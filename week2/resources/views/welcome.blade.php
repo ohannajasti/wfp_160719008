@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Ohanna's Bakery Shop
                 </div>
 
                 <div class="links">

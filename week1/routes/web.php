@@ -36,7 +36,3 @@ Route::get('/user/{nama?}', function($nama='Jasti'){
 //tugas week 2
 Route::view('/menu','menu');
 
-Route::view('/menu/{kat?}/{macam?}',function($kat='1',$macam='1'){
-    return view('')
-});
-

@@ -15,28 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-    // echo "Jasti";
 });
 
-Route::get('/greeting/{nama?}', function($nama='Semua'){
-    return view('welcome',['nama'=>$nama]);
-})->name('showGreeting');
-
-Route::get('/helloworld', function () {
-    return 'Hello World, my friend';
-    // echo "Jasti";
-});
-
-Route::view('/selamatdatang','welcome');
-
-Route::get('/user/{nama?}', function($nama='Jasti'){
-    return 'User:'.$nama;
-})->name('showMhs');
-
-//tugas week 2
 Route::view('/menu','menu');
 
-Route::view('/menu/{kat?}/{macam?}',function($kat='1',$macam='1'){
-    return view('')
+Route::get('/menu/{category}/{product}',function($category='pudding',$product='pudding-fla'){
+    return view('productdetail',['category'=>$category,'product'=>$product]);
 });
-
