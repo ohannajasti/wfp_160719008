@@ -547,6 +547,28 @@ License: You must have a valid license purchased only from themeforest(the above
 				<li >
 					<a href="javascript:;">
 					<i class="icon-present"></i>
+					<span class="title">Report</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="ui_general.html">
+							Jumlah Stok Per Kategori</a>
+						</li>
+						<li>
+							<a href="ui_buttons.html">
+							Jumlah Stok Per Supplier</a>
+						</li>
+						<li>
+							<a href="ui_icons.html">
+							Icons</a>
+						</li>
+						
+					</ul>
+				</li>
+				<li >
+					<a href="javascript:;">
+					<i class="icon-present"></i>
 					<span class="title">UI Features</span>
 					<span class="arrow "></span>
 					</a>

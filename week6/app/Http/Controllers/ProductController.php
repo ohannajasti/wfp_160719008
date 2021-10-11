@@ -68,6 +68,7 @@ class ProductController extends Controller
         return view('product.show',compact('data'));
     }
 
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -101,5 +102,7 @@ class ProductController extends Controller
     {
         //
     }
+
+
 
 }

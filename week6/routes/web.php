@@ -27,5 +27,6 @@ Route::get('/menu/{category}/{product}',function($category='pudding',$product='p
 Route::resource('product', "ProductController");
 Route::resource('category', "CategoryController");
 Route::resource('supplier', "SupplierController");
+Route::get('/report/kategori', "SupplierController");
 
 Route::get('/report/showcake/{name}','CategoryController@showcake')->name('reportShowCake');
