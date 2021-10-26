@@ -31,6 +31,8 @@ Route::resource('category', "CategoryController");
 Route::post('/supllier/showInfo','SupplierController@showInfo')->name('supplier.showInfo');
 Route::post('/supplier/showAjax', 'SupplierController@showAjax')->name('supplier.showAjax');
 Route::resource('supplier', "SupplierController");
+Route::resource('transaction', "TransactionController");  
+Route::post('/transaction/showAjax', "TransactionController@showAjax")->name('transaction.showAjax');
 // Route::get('/report/kategori', "SupplierController");
 
 // Route::get('/report/showcake/{name}','CategoryController@showcake')->name('reportShowCake');

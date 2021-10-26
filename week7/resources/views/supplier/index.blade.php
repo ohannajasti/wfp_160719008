@@ -19,8 +19,10 @@
                     <td>{{ $d->nama }}</td>
                     {{-- <td>{{ $d->address }}</td> --}}
                     <td>
-                        <a class="btn btn-default" href="{{route('supplier.show',$d->id)}}" data-target="#mymodal" data-toogle="modal">Show</a>
-                        <a class="btn btn-default" href="#basic" data-target="#mymodal" data-toogle="modal" onclick="getDetailData({{$d->id}});">Show w/ AJAX</a>
+                        <a class="btn btn-default" href="{{ route('supplier.show', $d->id) }}" data-target="#mymodal"
+                            data-toogle="modal">Show</a>
+                        <a class="btn btn-default" href="#basic" data-target="#mymodal" data-toogle="modal"
+                            onclick="getDetailData({{ $d->id }});">Show w/ AJAX</a>
                     </td>
                 </tr>
             @endforeach
@@ -29,64 +31,64 @@
     </table>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class = "panel-title">Informasi Rinci untuk anda</h3>
+            <h3 class="panel-title">Informasi Rinci untuk anda</h3>
             <a class='btn btn-default' href="#" onclick="showInfo()">Lihat Rincian Pesan</a>
         </div>
- 
+
         <div id="showInfo" class="panel-body">Panel Content</div>
-      </div>
     </div>
-    
+    {{-- </div> --}}
+
 @section('modal')
-<div class="modal fade in" id="basic" tabindex="-1" role="basic" aria-hidden="false" style="display: block;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">Modal Title</h4>
+    <div class="modal fade in" id="basic" tabindex="-1" role="basic" aria-hidden="false" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Modal Title</h4>
+                </div>
+                <div class="modal-body" id=>
+                    {{-- hasil ajax akan muncul di sini --}}
+                    Modal body goes here
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-info">Save changes</button>
+                </div>
             </div>
-            <div class="modal-body" id=>
-                {{-- hasil ajax akan muncul di sini --}}
-                 Modal body goes here
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-info">Save changes</button>
-            </div>
+            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-content -->
+        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
-</div>
 
 @endsection
 
 @section('footerjs')
-<script>
-    function showInfo(){
-	    alert('masuk');
-        $.ajax({
-            type:'POST',
-            URL:'{{ route("supplier.showInfo" )}}',
-            data: '_token = <?php echo csrf_token() ?>',//wajib ada
-            success:function(data){
-                alert(data.status);
-                $('#showInfo').html(data.msg);
-            }
-        });
-    }
-    function getDetailData(id){
-	    alert('masuk');
-        $.ajax({
-            type:'POST',
-            URL:'{{ route("supplier.showAjax" )}}',
-            data: '_token = <?php echo csrf_token() ?>',//wajib ada
-            success:function(data){
-                alert(data.status);
-                $('#showInfo').html(data.msg);
-            }
-        });
-    }
+    <script>
+        function showInfo() {
+            alert('masuk');
+            $.ajax({
+                type: 'POST',
+                URL: '{{ route('supplier.showInfo') }}',
+                data: '_token = <?php echo csrf_token(); ?>', //wajib ada
+                success: function(data) {
+                    alert(data.status);
+                    $('#showInfo').html(data.msg);
+                }
+            });
+        }
 
-</script>
+        function getDetailData(id) {
+            alert('masuk');
+            $.ajax({
+                type: 'POST',
+                URL: '{{ route('supplier.showAjax') }}',
+                data: '_token = <?php echo csrf_token(); ?>', //wajib ada
+                success: function(data) {
+                    alert(data.status);
+                    $('#showInfo').html(data.msg);
+                }
+            });
+        }
+    </script>
 @endsection

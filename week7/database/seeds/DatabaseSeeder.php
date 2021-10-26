@@ -13,10 +13,14 @@ class DatabaseSeeder extends Seeder
      //sebagai manajer nya, urutan pengerjaan sangat berpengaruh
     public function run()
     {
-        $this->call(UserSeeder::class);
-        $this->call(CategorySeeder::class);
-        $this->call(SupplierSeeder::class);
-        $this->call(ProductSeeder::class);
+        // $this->call(UserSeeder::class);
+        // $this->call(CategorySeeder::class);
+        // $this->call(SupplierSeeder::class);
+        // $this->call(ProductSeeder::class);
+        $this->call(CustomerSeeder::class);
+        $this->call(TransactionSeeder::class);
+        $this->call(ProductTransactionSeeder::class);
+
     }
     //ngelakuin seeder tapi hanya 1 
     //1. dengan comment aja langsung 
