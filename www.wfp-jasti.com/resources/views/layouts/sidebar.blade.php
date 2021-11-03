@@ -48,6 +48,11 @@
                                 <i class="icon-pin"></i>
                                 Supplier</a>
                         </li>
+                        <li class='{{ $activePage == 'transaction' ? ' active' : '' }}'>
+                            <a href="{{route('transaction.index')}}">
+                                <i class="icon-vector"></i>
+                                Transaction</a>
+                        </li>
                         <li>
                             <a href="layout_session_timeout.html">
                                 <i class="icon-vector"></i>
@@ -88,17 +93,17 @@
                 <li>
                     <a href="javascript:;">
                         <i class="icon-present"></i>
-                        <span class="title">UI Features</span>
+                        <span class="title">Transaction</span>
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="ui_general.html">
-                                General</a>
+                            <a href="{{route('transaction.index')}}">
+                                All Transactions</a>
                         </li>
                         <li>
-                            <a href="ui_buttons.html">
-                                Buttons</a>
+                            <a href="{{route('transaction.displayEachProduct')}}">
+                                Transaction Each Product</a>
                         </li>
                         <li>
                             <a href="ui_icons.html">

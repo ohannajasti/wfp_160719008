@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
+use App\Supplier;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,7 +17,9 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate(10);
-        return view('product.index', compact('products'));
+        $categories = Category::get();
+        $suppliers = Supplier::get();
+        return view('product.index', compact('products','categories','suppliers'));
     }
 
     /**
@@ -25,7 +29,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::get();
+        $suppliers = Supplier::get();
+        return view('product.create',compact('categories','suppliers'));
     }
 
     /**
@@ -36,7 +42,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $request['filename'] = "https://via.placeholder.com/150";
+        $product = $request->all();
+        Product::create($product);
+        session()->flash('status', 'New Product Succesfully Created');
+        return back();
     }
 
     /**
@@ -50,6 +61,15 @@ class ProductController extends Controller
         //
     }
 
+    public function showMoreProduct(Request $request)
+    {
+        $id= $request->get('id');
+        $product = Product::find($id);
+        return response()->json(array(
+            'msg' => view('product.showModal', compact('product'))->render()
+        ), 200);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -58,7 +78,31 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::get();
+        $suppliers = Supplier::get();
+        return view('product.edit', compact('product','categories','suppliers'));
+    }
+
+    public function editModalProductA(Request $request)
+    {
+        $id = $request->get('id');
+        $product = Product::find($id);
+        $categories = Category::get();
+        $suppliers = Supplier::get();
+        return response()->json(array(
+            'msg' => view('product.editModalA', compact('product','categories','suppliers'))->render()
+        ), 200);
+    }
+
+    public function editModalProductB(Request $request)
+    {
+        $id = $request->get('id');
+        $product = Product::find($id);
+        $categories = Category::get();
+        $suppliers = Supplier::get();
+        return response()->json(array(
+            'msg' => view('product.editModalB', compact('product','categories','suppliers'))->render()
+        ), 200);
     }
 
     /**
@@ -70,7 +114,22 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $attr = $request->all();
+        $product->update($attr);
+        session()->flash("status", "Product Sucessfully Updated");
+        return back();
+    }
+
+    public function updateData(Request $request)
+    {
+        $attr = $request->all();
+        $id = $request->get('id');
+        $product = Product::find($id);
+        $product->update($attr);
+        return response()->json(array(
+            'status' => 'ok',
+            'msg' => 'supplier updated'
+        ), 200);
     }
 
     /**
@@ -81,6 +140,27 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        session()->flash('status', "Product: '$product->nama' successfully deleted");
+        return back();
+    }
+
+    public function deleteData(Request $request)
+    {
+        try {
+            $id = $request->get('id');
+            $product = Product::find($id);
+            $product->delete();
+
+            return response()->json(array(
+                'status' => 'ok',
+                'msg' => 'product deleted'
+            ), 200);
+        } catch (\PDOException $e) {
+            return response()->json(array(
+                'status' => 'error',
+                'msg' => 'product is not updated. It may be used in product'
+            ), 200);
+        }
     }
 }

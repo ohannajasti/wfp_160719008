@@ -14,7 +14,7 @@ class Product extends Model
 
     //--Set Fillable Attribute--
     protected $fillable = [
-        'name', 'product_price', 'product_price_sell', 'stock',
+        'name', 'price_production', 'price_sell','filename', 'stock','category_id','supplier_id'
     ];
 
     //--Set Relation
@@ -23,7 +23,7 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function suppliers()
+    public function supplier()
     {
         return $this->belongsTo(Supplier::class);
     }

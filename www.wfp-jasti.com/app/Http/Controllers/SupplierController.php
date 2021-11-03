@@ -25,7 +25,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('supplier.create');
     }
 
     /**
@@ -36,7 +36,11 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $supplier = $request->all();
+        Supplier::create($supplier);
+        session()->flash('status', 'New Supplier Succesfully Created');
+        return back();
     }
 
     /**
@@ -50,6 +54,17 @@ class SupplierController extends Controller
         //
     }
 
+    public function showAjax(Request $request)
+    {
+        $id = $request->get('id');
+        $supplier = Supplier::find($id);
+        $products = $supplier->products;
+
+        return response()->json(array(
+            'msg' => view('supplier.showModal', compact('supplier', 'products'))->render()
+        ), 200);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -58,9 +73,38 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+        return view('supplier.edit', compact('supplier'));
     }
 
+    public function editForm(Request $request)
+    {
+        $id = $request->get('id');
+        $supplier = Supplier::find($id);
+
+        return response()->json(array(
+            'msg' => view('supplier.editForm', compact('supplier'))->render()
+        ), 200);
+    }
+    public function editForm2(Request $request)
+    {
+        $id = $request->get('id');
+        $supplier = Supplier::find($id);
+
+        return response()->json(array(
+            'msg' => view('supplier.editForm2', compact('supplier'))->render()
+        ), 200);
+    }
+    public function saveData(Request $request)
+    {
+        $attr = $request->all();
+        $id = $request->get('id');
+        $supplier = Supplier::find($id);
+        $supplier->update($attr);
+        return response()->json(array(
+            'status' => 'ok',
+            'msg' => 'supplier updated'
+        ), 200);
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -70,7 +114,10 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
-        //
+        $attr = $request->all();
+        $supplier->update($attr);
+        session()->flash("status", "Supplier Sucessfully Updated");
+        return back();
     }
 
     /**
@@ -81,6 +128,27 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        //
+        $supplier->delete();
+        session()->flash('status', "Supplier: '$supplier->nama' successfully deleted");
+        return back();
+    }
+
+    public function deleteData(Request $request)
+    {
+        try {
+            $id = $request->get('id');
+            $supplier = Supplier::find($id);
+            $supplier->delete();
+
+            return response()->json(array(
+                'status' => 'ok',
+                'msg' => 'supplier deleted'
+            ), 200);
+        } catch (\PDOException $e) {
+            return response()->json(array(
+                'status' => 'error',
+                'msg' => 'supplier is not updated. It may be used in product'
+            ), 200);
+        }
     }
 }

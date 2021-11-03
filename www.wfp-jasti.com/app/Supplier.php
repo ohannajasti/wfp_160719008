@@ -10,7 +10,7 @@ class Supplier extends Model
     protected $table = 'suppliers';
     protected $primaryKey = 'id';
     public $incrementing = true;
-    public $timestamps = false;
+    public $timestamps = true;
 
     //--Set Fillable Attribute--
     protected $fillable = [

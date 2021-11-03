@@ -9,6 +9,7 @@ $titlePage = 'Category';
         {{-- Breadcrump --}}
         @include("layouts.content.header", ["breadcrump_items"=>["Master
         Data","Category"],"breadcrump_href"=>['','category.index']])
+       
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
@@ -19,13 +20,19 @@ $titlePage = 'Category';
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                
                         @foreach ($categories as $category)
+                        <tr>
                         <td>{{$category->id}}</td>     
                         <td>{{$category->name}}</td> 
-                        @endforeach
-                        <td></td>
+                        <td>
+                            <a class="btn btn-primary" href="{{route('category.edit',$category->id)}}" role="button">Edit</a>
+                            <a class="btn btn-danger" href="{{route('category.destroy',$category->id)}}" role="button">Destroy</a>
+                        </td>
                     </tr>
+                        @endforeach
+
+             
                 </tbody>
             </table>
         </div>

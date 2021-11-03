@@ -25,7 +25,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customer.create');
     }
 
     /**
@@ -70,7 +70,10 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        $attr = $request->all();
+        $customer->update($attr);
+        session()->flash("status", "Supplier Sucessfully Updated");
+        return back();
     }
 
     /**

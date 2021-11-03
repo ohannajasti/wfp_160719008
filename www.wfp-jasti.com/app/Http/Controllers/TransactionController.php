@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\Transaction;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Transaction::paginate(10);
+        return view('transaction.index', compact('transactions'));
     }
 
     /**
@@ -24,7 +26,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        return view('transaction.create');
     }
 
     /**
@@ -81,5 +83,15 @@ class TransactionController extends Controller
     public function destroy(Transaction $transaction)
     {
         //
+    }
+
+    public function displayEachProduct()
+    {
+        $products = Product::get();
+        return view('transaction.transactionPerProduct',compact('products'));
+    }
+
+    public function displayTransactionEachProduct($product){
+    
     }
 }
