@@ -2,12 +2,12 @@
 $titlePage = 'Add Data Product';
 @endphp
 
-@extends('layouts.app', ['activePage' => 'product', 'titlePage' => $titlePage])
+@extends('admin.layouts.app', ['activePage' => 'product', 'titlePage' => $titlePage])
 
 @section('content')
     <div class="page-content">
         {{-- Breadcrump --}}
-        @include("layouts.content.header", ["breadcrump_items"=>["Master Data","Product","Add Data
+        @include("admin.layouts.content.header", ["breadcrump_items"=>["Master Data","Product","Add Data
         Product"],"breadcrump_href"=>['','product.index','product.create']])
         {{-- Status --}}
         @if (session('status'))

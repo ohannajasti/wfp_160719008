@@ -52,14 +52,14 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN BODY -->
 <body class="page-header-fixed">
 <!-- BEGIN HEADER -->
-@include('layouts.navbar')
+@include('admin.layouts.navbar')
 <!-- END HEADER -->
 <div class="clearfix">
 </div>
 <!-- BEGIN CONTAINER -->
 <div class="page-container">
 	<!-- BEGIN SIDEBAR -->
-    @include('layouts.sidebar')
+    @include('admin.layouts.sidebar')
 	<!-- END SIDEBAR -->
 	<!-- BEGIN CONTENT -->
 	<div class="page-content-wrapper">

@@ -16,7 +16,7 @@ class TransactionController extends Controller
     public function index()
     {
         $transactions = Transaction::paginate(10);
-        return view('transaction.index', compact('transactions'));
+        return view('admin.transaction.index', compact('transactions'));
     }
 
     /**
@@ -26,7 +26,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        return view('transaction.create');
+        return view('admin.transaction.create');
     }
 
     /**
@@ -88,7 +88,7 @@ class TransactionController extends Controller
     public function displayEachProduct()
     {
         $products = Product::get();
-        return view('transaction.transactionPerProduct',compact('products'));
+        return view('admin.transaction.transactionPerProduct',compact('products'));
     }
 
     public function displayTransactionEachProduct($product){

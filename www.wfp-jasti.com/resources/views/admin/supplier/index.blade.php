@@ -2,12 +2,12 @@
 $titlePage = 'supplier';
 @endphp
 
-@extends('layouts.app', ['activePage' => 'supplier', 'titlePage' => $titlePage])
+@extends('admin.layouts.app', ['activePage' => 'supplier', 'titlePage' => $titlePage])
 
 @section('content')
     <div class="page-content">
         {{-- Breadcrump --}}
-        @include("layouts.content.header", ["breadcrump_items"=>["Master
+        @include("admin.layouts.content.header", ["breadcrump_items"=>["Master
         Data","supplier"],"breadcrump_href"=>['','supplier.index']])
         @if (session('status'))
             <div class="alert alert-success">

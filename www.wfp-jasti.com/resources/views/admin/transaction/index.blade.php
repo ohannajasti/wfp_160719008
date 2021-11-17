@@ -2,12 +2,12 @@
 $titlePage = 'Transaction';
 @endphp
 
-@extends('layouts.app', ['activePage' => 'transaction', 'titlePage' => $titlePage])
+@extends('admin.layouts.app', ['activePage' => 'transaction', 'titlePage' => $titlePage])
 
 @section('content')
     <div class="page-content">
         {{-- Breadcrump --}}
-        @include("layouts.content.header", ["breadcrump_items"=>["Transaction","All
+        @include("admin.layouts.content.header", ["breadcrump_items"=>["Transaction","All
         Transaction"],"breadcrump_href"=>['','transaction.index']])
         <div class="table-responsive">
             <table class="table table-hover">

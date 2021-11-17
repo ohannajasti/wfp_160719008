@@ -2,12 +2,12 @@
 $titlePage = 'Category';
 @endphp
 
-@extends('layouts.app', ['activePage' => 'category', 'titlePage' => $titlePage])
+@extends('admin.layouts.app', ['activePage' => 'category', 'titlePage' => $titlePage])
 
 @section('content')
     <div class="page-content">
         {{-- Breadcrump --}}
-        @include("layouts.content.header", ["breadcrump_items"=>["Master
+        @include("admin.layouts.content.header", ["breadcrump_items"=>["Master
         Data","Category"],"breadcrump_href"=>['','category.index']])
        
         <div class="table-responsive">

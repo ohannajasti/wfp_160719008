@@ -388,7 +388,10 @@
 					<li class="divider">
 					</li>
 					<li>
-						<a href="login.html"><i class="fa fa-key"></i> Log Out</a>
+						<form role="form" method="post" action="{{route('logout')}}" enctype="">
+							@csrf
+						<button type="submit" name="btnlogout">Log Out</button>
+						</form>
 					</li>
 				</ul>
 			</li>

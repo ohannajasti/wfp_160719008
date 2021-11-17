@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,26 +19,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('supplier/showAjax','SupplierController@showAjax')->name('supplier.showAjax');
-Route::post('supplier/editForm/','SupplierController@editForm')->name('supplier.editForm');
-Route::post('supplier/editForm2/','SupplierController@editForm2')->name('supplier.editForm2');
-Route::post('supplier/saveData','SupplierController@saveData')->name('supplier.saveData');
-Route::post('supplier/deleteData','SupplierController@deleteData')->name('supplier.deleteData');
+Route::get('/','ProductController@frontend_index');
+Route::get('cart','ProductController@cart');
+Route::get('add-to-cart/{id}','ProductController@addToCart');
 
-Route::post('product/showMoreProduct','ProductController@showMoreProduct')->name('product.showMoreProduct');
-Route::post('product/editModalProductA','ProductController@editModalProductA')->name('product.editModalProductA');
-Route::post('product/editModalProductB','ProductController@editModalProductB')->name('product.editModalProductB');
-Route::post('product/updateData','ProductController@updateData')->name('product.updateData');
-Route::post('product/deleteData','ProductController@deleteData')->name('product.deleteData');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
 
-Route::resource('category', 'CategoryController');
-Route::resource('supplier', 'SupplierController');
-Route::resource('product', 'ProductController');
-Route::resource('customer', 'CustomerController');
-Route::resource('transaction', 'TransactionController');
-Route::get('transaction/displayEachProduct','TransactionController@displayEachProduct')->name('transaction.displayEachProduct');
+    Route::post('supplier/showAjax', 'SupplierController@showAjax')->name('supplier.showAjax');
+    Route::post('supplier/editForm/', 'SupplierController@editForm')->name('supplier.editForm');
+    Route::post('supplier/editForm2/', 'SupplierController@editForm2')->name('supplier.editForm2');
+    Route::post('supplier/saveData', 'SupplierController@saveData')->name('supplier.saveData');
+    Route::post('supplier/deleteData', 'SupplierController@deleteData')->name('supplier.deleteData');
 
+    Route::post('product/showMoreProduct', 'ProductController@showMoreProduct')->name('product.showMoreProduct');
+    Route::post('product/editModalProductA', 'ProductController@editModalProductA')->name('product.editModalProductA');
+    Route::post('product/editModalProductB', 'ProductController@editModalProductB')->name('product.editModalProductB');
+    Route::post('product/updateData', 'ProductController@updateData')->name('product.updateData');
+    Route::post('product/deleteData', 'ProductController@deleteData')->name('product.deleteData');
+
+    Route::resource('category', 'CategoryController');
+    Route::resource('supplier', 'SupplierController');
+    Route::resource('product', 'ProductController');
+    Route::resource('customer', 'CustomerController');
+    Route::resource('transaction', 'TransactionController');
+    Route::get('transaction/displayEachProduct', 'TransactionController@displayEachProduct')->name('transaction.displayEachProduct');
+    
+});

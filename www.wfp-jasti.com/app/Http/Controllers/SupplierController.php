@@ -15,7 +15,7 @@ class SupplierController extends Controller
     public function index()
     {
         $suppliers = Supplier::paginate(10);
-        return view('supplier.index', compact('suppliers'));
+        return view('admin.supplier.index', compact('suppliers'));
     }
 
     /**
@@ -25,7 +25,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view('supplier.create');
+        return view('admin.supplier.create');
     }
 
     /**
@@ -61,7 +61,7 @@ class SupplierController extends Controller
         $products = $supplier->products;
 
         return response()->json(array(
-            'msg' => view('supplier.showModal', compact('supplier', 'products'))->render()
+            'msg' => view('admin.supplier.showModal', compact('supplier', 'products'))->render()
         ), 200);
     }
 
@@ -73,7 +73,7 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        return view('supplier.edit', compact('supplier'));
+        return view('admin.supplier.edit', compact('supplier'));
     }
 
     public function editForm(Request $request)
@@ -82,7 +82,7 @@ class SupplierController extends Controller
         $supplier = Supplier::find($id);
 
         return response()->json(array(
-            'msg' => view('supplier.editForm', compact('supplier'))->render()
+            'msg' => view('admin.supplier.editForm', compact('supplier'))->render()
         ), 200);
     }
     public function editForm2(Request $request)
@@ -91,7 +91,7 @@ class SupplierController extends Controller
         $supplier = Supplier::find($id);
 
         return response()->json(array(
-            'msg' => view('supplier.editForm2', compact('supplier'))->render()
+            'msg' => view('admin.supplier.editForm2', compact('supplier'))->render()
         ), 200);
     }
     public function saveData(Request $request)

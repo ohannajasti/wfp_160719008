@@ -19,7 +19,14 @@ class ProductController extends Controller
         $products = Product::paginate(10);
         $categories = Category::get();
         $suppliers = Supplier::get();
-        return view('product.index', compact('products','categories','suppliers'));
+        return view('admin.product.index', compact('products','categories','suppliers'));
+    }
+
+    public function frontend_index()
+    {
+        $products = Product::paginate(10);
+        $categories = Category::get();
+        return view('frontend.product.index', compact('products','categories'));
     }
 
     /**
@@ -31,7 +38,7 @@ class ProductController extends Controller
     {
         $categories = Category::get();
         $suppliers = Supplier::get();
-        return view('product.create',compact('categories','suppliers'));
+        return view('admin.product.create',compact('categories','suppliers'));
     }
 
     /**
@@ -66,7 +73,7 @@ class ProductController extends Controller
         $id= $request->get('id');
         $product = Product::find($id);
         return response()->json(array(
-            'msg' => view('product.showModal', compact('product'))->render()
+            'msg' => view('admin.product.showModal', compact('product'))->render()
         ), 200);
     }
 
@@ -80,7 +87,7 @@ class ProductController extends Controller
     {
         $categories = Category::get();
         $suppliers = Supplier::get();
-        return view('product.edit', compact('product','categories','suppliers'));
+        return view('admin.product.edit', compact('product','categories','suppliers'));
     }
 
     public function editModalProductA(Request $request)
@@ -90,7 +97,7 @@ class ProductController extends Controller
         $categories = Category::get();
         $suppliers = Supplier::get();
         return response()->json(array(
-            'msg' => view('product.editModalA', compact('product','categories','suppliers'))->render()
+            'msg' => view('admin.product.editModalA', compact('product','categories','suppliers'))->render()
         ), 200);
     }
 
@@ -101,7 +108,7 @@ class ProductController extends Controller
         $categories = Category::get();
         $suppliers = Supplier::get();
         return response()->json(array(
-            'msg' => view('product.editModalB', compact('product','categories','suppliers'))->render()
+            'msg' => view('admin.product.editModalB', compact('product','categories','suppliers'))->render()
         ), 200);
     }
 
@@ -162,5 +169,27 @@ class ProductController extends Controller
                 'msg' => 'product is not updated. It may be used in product'
             ), 200);
         }
+    }
+
+    public function cart(){
+        return view('frontend.cart');
+    }
+
+    public function addToCart($id){
+        $product = Product::find($id);
+        $cart = session()->get('cart');
+        if(!isset($cart[$id])){
+            $cart[$id]=[
+                "name"=>$product->name,
+                "quantity"=>1,
+                "price"=>$product->price_sell,
+                "photo"=>$product->fiilename
+            ];
+        }
+        else{
+            $cart[$id]['quantity']++;
+        }
+        session()->put('cart,$cart');
+        return redirect()->back()->with('success','Product added to cart successfully!');
     }
 }

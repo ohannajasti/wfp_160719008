@@ -2,12 +2,12 @@
 $titlePage = 'Category';
 @endphp
 
-@extends('layouts.app', ['activePage' => 'transaction', 'titlePage' => $titlePage])
+@extends('admin.layouts.app', ['activePage' => 'transaction', 'titlePage' => $titlePage])
 
 @section('content')
     <div class="page-content">
         {{-- Breadcrump --}}
-        @include("layouts.content.header", ["breadcrump_items"=>["Master
+        @include("admin.layouts.content.header", ["breadcrump_items"=>["Master
         Data","Transaction"],"breadcrump_href"=>['','transaction.index']])
 
         <div class="portlet">

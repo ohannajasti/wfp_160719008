@@ -2,7 +2,7 @@
     $titlePage = "Dashboard"
 @endphp
 
-@extends('layouts.app', ['activePage' => 'dashboard', 'titlePage' => $titlePage])
+@extends('admin.layouts.app', ['activePage' => 'dashboard', 'titlePage' => $titlePage])
 
 @section('content')
 <div class="page-content">
@@ -93,7 +93,7 @@
     </div>
     <!-- END BEGIN STYLE CUSTOMIZER -->
     <!-- BEGIN PAGE HEADER-->
-    @include("layouts.content.header", ["breadcrump_items"=>["Home","Dashboard"],"breadcrump_href"=>['dashboard','dashboard']])
+    @include("admin.layouts.content.header", ["breadcrump_items"=>["Home","Dashboard"],"breadcrump_href"=>['dashboard','dashboard']])
     <!-- END PAGE HEADER-->
     <!-- BEGIN OVERVIEW STATISTIC BARS-->
     <div class="row stats-overview-cont">
