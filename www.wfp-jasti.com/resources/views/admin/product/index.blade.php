@@ -44,10 +44,10 @@ $titlePage = 'Product';
                         <tr id="tr_id_{{$product->id}}">
                             <td id="td_id_{{$product->id}}">{{ $product->id }}</td>
                             <td ><img src="https://via.placeholder.com/150" alt=""></td>
-                            <td id="td_name_{{$product->id}}">{{ $product->name }}</td>
-                            <td id="td_price_production_{{$product->id}}">{{ $product->price_production }}</td>
-                            <td id="td_price_sell_{{$product->id}}">{{ $product->price_sell }}</td>
-                            <td id="td_stock_{{$product->id}}">{{ $product->stock }}</td>
+                            <td class="editable" id="td_name_{{$product->id}}">{{ $product->name }}</td>
+                            <td class="editable" id="td_price_production_{{$product->id}}">{{ $product->price_production }}</td>
+                            <td class="editable" id="td_price_sell_{{$product->id}}">{{ $product->price_sell }}</td>
+                            <td class="editable" id="td_stock_{{$product->id}}">{{ $product->stock }}</td>
                             <td id="td_category_id_{{$product->category->id}}" >{{ $product->category->name }}</td>
                             <td d="td_supplier_id_{{$product->supplier->id}}">{{ $product->supplier->name }}</td>
                             <td>
@@ -156,6 +156,22 @@ $titlePage = 'Product';
     {{-- End of Modal Edit Supplier --}}
 @endsection
 
+@section('initialscript')
+<script>
+$('.editable').editable({
+    closeOnEnter:true,
+    callback:function(data){
+        if(data.content){
+            var s_id = data.$el[0].id
+            var fname = s_id.split('_')[1]
+            var id =s_id
+            alert(data.content)
+        }
+    }
+});
+</script>
+@endsection
+
 @section('ajax')
     <script>
         function getDetailData(id) {
@@ -252,5 +268,6 @@ $titlePage = 'Product';
                 }
             });
         }
+
     </script>
 @endsection

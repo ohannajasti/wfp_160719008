@@ -45,6 +45,8 @@ License: You must have a valid license purchased only from themeforest(the above
 <link href="{{asset('conquer2')}}/assets/css/pages/tasks.css" rel="stylesheet" type="text/css"/>
 <link href="{{asset('conquer2')}}/assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
 <link href="{{asset('conquer2')}}/assets/css/custom.css" rel="stylesheet" type="text/css"/>
+<!-- JS Editable TD -->
+
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
 </head>
@@ -117,6 +119,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="{{asset('conquer2')}}/assets/scripts/app.js" type="text/javascript"></script>
 <script src="{{asset('conquer2')}}/assets/scripts/index.js" type="text/javascript"></script>
 <script src="{{asset('conquer2')}}/assets/scripts/tasks.js" type="text/javascript"></script>
+<script src="{{asset('plugins')}}/jquery.editable.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
 jQuery(document).ready(function() {    
@@ -134,6 +137,7 @@ jQuery(document).ready(function() {
 });
 </script>
 <!-- END JAVASCRIPTS -->
+@yield('initialscript')
 @yield('ajax')
 </body>
 <!-- END BODY -->
